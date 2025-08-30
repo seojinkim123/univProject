@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>연세 편의 시설</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="last/facilitystyle.css" />
+  <link rel="stylesheet" href="common/basestyle.css">
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-header">
+  <h1>맛집 안내</h1>
+  <p>연세대학교 주위의 다양한 맛집입니다.</p>
+
+<div class="facility-filters">
+    <button class="filter-btn active" data-filter="all">전체보기</button>
+    <button class="filter-btn" data-filter="매지리">매지리</button>
+    <button class="filter-btn" data-filter="단계동">단계동</button>
+    <button class="filter-btn" data-filter="무실동">무실동</button>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="facility-search" placeholder="식당으로 검색">
+    <button id="search-btn"><i class="fas fa-search"></i></button>
+  </div>
+</div>
+
+<div class="facility-container">
+    <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/카쿠레가.png" alt="1층 휴게실">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>카쿠레가</h3>
+      <p class="facility-description">강원 원주시 능라동길 37 1층 102호</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:00 - 20:30<br>[브레이크 타임] : 15:00 - 16:30<br>[라스트 오더] : 20:20<br>[전화번호] : 0507-1318-6578</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/오늘의 초밥.png" alt="오늘의 초밥">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>오늘의 초밥</h3>
+      <p class="facility-description">강원도 원주시 무실동 1857-18 (아트박스 건물 2층)</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:30 - 21:00<br>[브레이크 타임] : 15:00 - 17:00<br>[라스트 오더] : 14:00<br>[월요일] : 정기휴무<br>[전화번호] : 0507-1347-2025</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/멘야하코.png" alt="멘야하코">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>멘야하코</h3>
+      <p class="facility-description">강원 원주시 능라동길 37 1층 106호</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:30 - 21:00<br>[브레이크 타임] : 15:00 - 17:00<br>[라스트 오더] : 14:40, 20:40<br>[전화번호] :0507-1310-2785</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/미분당.png" alt="미분당">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>미분당</h3>
+      <p class="facility-description">강원 원주시 능라동길 25 1층 102호</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:00 - 21:00<br>[브레이크 타임] : 15:00 - 17:00<br>[라스트 오더] : 14:30, 20:30<br>[전화번호] :070-8657-1132</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/삼교리동치미막국수&육개장.png" alt="삼교리동치미막국수&육개장">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>삼교리동치미막국수&육개장</h3>
+      <p class="facility-description">강원 원주시 무실동 947-2</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 10:10 - 20:00<br>[브레이크 타임] : 15:30 - 17:30<br>[라스트 오더] : 19:40<br>[월요일] : 정기휴무<br>[전화번호] :0507-1327-7300</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/글뤽피자.png" alt="글뤽피자">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>글뤽피자 </h3>
+      <p class="facility-description">강원 원주시 능라동길 37 103호</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:30 - 24:00<br>[브레이크 타임] : 11:30 - 24:00<br>[라스트 오더] : 23:00<br>[전화번호] :0507-1366-9713</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/태향원 본점.png" alt="태향원 본점">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>태향원 본점</h3>
+      <p class="facility-description">강원 원주시 봉바위길 52 무실동 1837-8 1층</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:00 - 22:00<br>[브레이크 타임] : 16:00 - 17:00(화요일, 금요일)<br>[전화번호] :0507-1359-2566</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="무실동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/원주 뚝배기 짬뽕.png" alt="원주 뚝배기 짬뽕">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>무실동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>원주 뚝배기 짬뽕</h3>
+      <p class="facility-description">강원 원주시 봉바위길 41 1층</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 11:00 - 21:00<br>[브레이크 타임] : 15:00 - 16:30<br>[라스트 오더] : 20:10<br>[화요일] : 정기휴무<br>[전화번호] :033-744-3214</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="단계동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/봉화산설렁탕.png" alt="봉화산설렁탕">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>단계동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>봉화산설렁탕</h3>
+      <p class="facility-description">강원 원주시 장미공원길 71-2</p>
+      <div class="facility-details">
+        <span>[운영 시간] : 00:00 - 24:00<br>[전화번호] :033-731-4987</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="단계동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/방가삼대 얼큰한 뼈해장국.png" alt="방가삼대 얼큰한 뼈해장국">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>단계동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>방가삼대 얼큰한 뼈해장국</h3>
+      <p class="facility-description">강원 원주시 장미공원길 67-2 1층</p>
+      <div class="facility-details">
+        <span>[운영 시간] :00:00 - 24:00<br>[브레이크 타임] : 14:50 - 16:30<br>[전화번호] :033-744-4710</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="단계동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/핵밥.png" alt="핵밥">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>단계동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>핵밥</h3>
+      <p class="facility-description">강원 원주시 북원로 2235-4 1층 105호</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 21:00<br>[라스트 오더] : 20:30</span>
+        </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="단계동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/이레담막국수.png" alt="이레담막국수">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>단계동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>이레담막국수</h3>
+      <p class="facility-description">강원 원주시 단계동 746-6</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 21:00<br>[브레이크 타임] : 15:00 - 17:00<br>[라스트 오더] : 20:00<br>[전화번호] :0507-1399-3423</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="단계동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/편편집.png" alt="편편집">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>단계동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>편편집</h3>
+      <p class="facility-description">강원 원주시 원문로100번길 2-59 1층 2호</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 22:00<br>[브레이크 타임] : 15:00 - 17:00<br>[라스트 오더] : 13:50, 20:50<br>[전화번호] :0507-1324-2692</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="단계동">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/백정.png" alt="백정">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>단계동</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>백정</h3>
+      <p class="facility-description">강원 원주시 북원로 2235-12</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 24:00<br>[라스트 오더] : 23:00<br>[전화번호] :033-735-6678</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="매지리">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/보스 부리또.jpg" alt="보스 부리또">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>매지리</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>보스 부리또</h3>
+      <p class="facility-description">강원 원주시 흥업면 매남동길 1 1층 101호,102호</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 22:00<br>[전화번호] :0507-1454-5531</span>
+      </div>
+    </div>
+  </div>
+
+   <div class="facility-card" data-category="매지리">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/그린식당.jpg" alt="그린식당">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>매지리</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>그린식당</h3>
+      <p class="facility-description">강원 원주시 흥업면 매지리 1238-4</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 22:00<br>[토, 일] : 정기휴무<br>[전화번호] :033-763-2233</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="매지리">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/유진손두부.jpg" alt="유진손두부">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>매지리</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>유진손두부</h3>
+      <p class="facility-description">강원 원주시 흥업면 매지리 1231-1</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 19:30<br>[일요일] : 정기휴무<br>[전화번호] :033-763-4804</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facility-card" data-category="매지리">
+        <div class="facility-image">
+      <img src="/last/restaurant_images/Js22.jpg" alt="Js22">
+      <div class="facility-badge">
+        <i class="fas fa-building"></i>
+        <span>매지리</span>
+      </div>
+    </div>
+    <div class="facility-info">
+      <h3>제이스22</h3>
+      <p class="facility-description">강원 원주시 흥업면 매지리 1231-6</p>
+      <div class="facility-details">
+        <span>[운영 시간] :11:00 - 21:00<br>[브레이크 타임] : 14:40 - 16:30<br>[라스트 오더] : 20:00<br>[일요일] : 정기휴무<br>[전화번호] :0507-1312-1025</span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  
+
+<footer class="facility-footer">
+  <p>© 2025 연세대학교 </p>
+</footer>
+
+<script src="common/navbar.js"></script>
+<script src="last/facility.js"></script>
+</body>
+</html>
+

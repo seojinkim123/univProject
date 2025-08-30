@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>시설 목록</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-7xl mx-auto space-y-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">시설 목록</h1>
+    <a href="/ad/facilities/new" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md">신규 등록</a>
+    <div class="bg-white rounded-xl shadow p-6">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">이름</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">주소</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">운영</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">설명</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">카테고리</th>
+                    <th scope="col" class="relative px-6 py-3"><span class="sr-only">Actions</span></th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                <tr th:each="facility : ${facilities}" class="cursor-pointer hover:bg-gray-50"
+                    th:data-facility-name="${facility.name}" onclick="goToFacilityDetail(this)">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" th:text="${facility.id}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${facility.name}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${facility.address}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${facility.operation}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${facility.explanation}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${facility.category}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a th:href="@{/ad/facilities/edit/{id}(id=${facility.id})}" class="text-indigo-600 hover:text-indigo-900 mr-4" onclick="event.stopPropagation();">수정</a>
+                        <a th:href="@{/ad/facilities/delete/{id}(id=${facility.id})}" class="text-red-600 hover:text-red-900" onclick="event.stopPropagation();">삭제</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToFacilityDetail(rowElement) {
+        const facilityName = rowElement.dataset.facilityName;
+        window.location.href = `/ad/facilities/${facilityName}`;
+    }
+</script>
+</body>
+</html>

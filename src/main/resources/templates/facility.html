@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>연세 편의 시설</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="last/facilitystyle.css" />
+  <link rel="stylesheet" href="common/basestyle.css">
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-header">
+  <h1>편의시설 안내</h1>
+  <p>연세대학교의 다양한 시설을 확인하세요</p>
+
+  <div class="facility-filters">
+    <button class="filter-btn active" data-filter="all">전체보기</button>
+    <button class="filter-btn" data-filter="학습">학습시설</button>
+    <button class="filter-btn" data-filter="식당">식당/카페</button>
+    <button class="filter-btn" data-filter="편의">편의시설</button>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="facility-search" placeholder="시설명으로 검색">
+    <button id="search-btn"><i class="fas fa-search"></i></button>
+  </div>
+</div>
+
+<div class="facility-container">
+  <div class="facility-card"
+       th:each="facility : ${facilities}"
+       th:attr="data-category=${facility.category}">
+
+    <div class="facility-image">
+      <img th:src="${facility.imagePath}" th:alt="${facility.name}" />
+      <div class="facility-badge">
+        <i class="fas"
+           th:classappend="' ' + (${facility.category == '학습'} ? 'fa-book' : (${facility.category == '식당' ? 'fa-utensils' : 'fa-building'}))">
+        </i>
+        <span th:text="${facility.category} + '시설'"></span>
+      </div>
+    </div>
+
+    <div class="facility-info">
+      <h3 th:text="${facility.name}">시설명</h3>
+      <p class="facility-description" th:text="${facility.explanation}">시설 설명</p>
+
+      <div class="facility-details">
+        <span><i class="fas fa-clock"></i> <span th:text="${facility.operation}">--:--</span></span>
+        <span><i class="fas fa-map-marker-alt"></i> <span th:text="${facility.address}">--</span></span>
+      </div>
+
+      <a th:href="@{'/facilities/' + ${facility.name}}" class="view-details-btn">
+        상세보기 <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="no-results-message" style="display: none;">
+  <i class="fas fa-search"></i>
+  <p>검색 결과가 없습니다.</p>
+  <button class="reset-search-btn" style="display: none;">전체 시설 보기</button>
+</div>
+
+<footer class="facility-footer">
+  <p>© 2025 연세대학교 | 시설 문의: 033-123-4567</p>
+</footer>
+
+<script src="common/navbar.js"></script>
+<script src="last/facility.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8" />-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--  <title>연세 편의 시설</title>-->
+<!--  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">-->
+<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
+<!--  <link rel="stylesheet" href="last/facilitystyle.css" />-->
+<!--  <link rel="stylesheet" href="common/basestyle.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--  <div id="nav-placeholder"></div>-->
+
+<!--  <div class="page-header">-->
+<!--    <h1>편의시설 안내</h1>-->
+<!--    <p>연세대학교의 다양한 시설을 확인하세요</p>-->
+<!--      <div class="facility-filters">-->
+<!--      <button class="filter-btn active" data-filter="all">전체보기</button>-->
+<!--      <button class="filter-btn" data-filter="학습">학습시설</button>-->
+<!--      <button class="filter-btn" data-filter="식당">식당/카페</button>-->
+<!--      <button class="filter-btn" data-filter="편의">편의시설</button>-->
+<!--    </div>-->
+
+<!--    <div class="search-box">-->
+<!--      <input type="text" id="facility-search" placeholder="시설명으로 검색">-->
+<!--      <button id="search-btn"><i class="fas fa-search"></i></button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="facility-container">    -->
+<!--    <div class="facility-card" data-category="편의 식당">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/연세플라자.png" alt="연세플라자" />-->
+<!--        <div class="facility-badge"><i class="fas fa-utensils"></i> 편의시설, 식당/카페</div>-->
+<!--      </div><div class="facility-info">-->
+<!--        <h3>연세플라자</h3>-->
+<!--        <p class="facility-description">푸드코트, 카페, 편의점 등 다양한 편의시설이 위치한 학생활동 공간</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/plaza" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="facility-card" data-category="편의 식당">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/학생회관.png" alt="학생회관" />-->
+<!--        <div class="facility-badge"><i class="fas fa-building"></i> 편의시설, 식당/카페</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>학생회관</h3>-->
+<!--        <p class="facility-description">학생회 사무실, 동아리방, 다목적 세미나실이 위치한 학생 중심 공간</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/studentUnion" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>    -->
+<!--    -->
+<!--    <div class="facility-card" data-category="학습">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/컨버전스.png" alt="컨버전스홀" />-->
+<!--        <div class="facility-badge"><i class="fas fa-laptop"></i> 학습시설</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>컨버전스홀</h3>-->
+<!--        <p class="facility-description">최신 IT 설비를 갖춘 강의실과 스터디룸이 있는 복합교육시설</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/convergence" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="facility-card" data-category="학습">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/정의관.png" alt="정의관" />-->
+<!--        <div class="facility-badge"><i class="fas fa-book"></i> 학습시설</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>정의관</h3>-->
+<!--        <p class="facility-description">강의실과 교수연구실이 있는 인문사회계열 중심 건물</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/jeongui" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>    -->
+<!--    <div class="facility-card" data-category="학습">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/청송관.png" alt="청송관" />-->
+<!--        <div class="facility-badge"><i class="fas fa-book"></i> 학습시설</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>청송관</h3>-->
+<!--        <p class="facility-description">학생 기숙사로 편의시설과 휴게공간이 완비된 주거시설</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/cheongsong" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>    -->
+<!--    <div class="facility-card" data-category="학습">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/창조관.png" alt="창조관" />-->
+<!--        <div class="facility-badge"><i class="fas fa-book"></i> 학습시설</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>창조관</h3>-->
+<!--        <p class="facility-description">실험실과 연구공간이 위치한 자연공학계열 중심 건물</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="/facilities/changjo" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>    -->
+<!--    <div class="facility-card" data-category="학습">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/백운관.png" alt="백운관" />-->
+<!--        <div class="facility-badge"><i class="fas fa-book"></i> 학습시설</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>백운관</h3>-->
+<!--        <p class="facility-description">대형 학생식당과 편의시설이 위치한 복합건물</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/baekun" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>    -->
+<!--    <div class="facility-card" data-category="학습">      -->
+<!--      <div class="facility-image">-->
+<!--        <img src="/last/facilities_images/미래관.png" alt="미래관" />-->
+<!--        <div class="facility-badge"><i class="fas fa-laptop"></i> 학습시설</div>-->
+<!--      </div>-->
+<!--      <div class="facility-info">-->
+<!--        <h3>미래관</h3>-->
+<!--        <p class="facility-description">첨단 IT 인프라가 구축된 미래형 강의실과 연구공간</p>        -->
+<!--        <div class="facility-details">-->
+<!--          <span><i class="fas fa-clock"></i> &#45;&#45;:&#45;&#45;</span>-->
+<!--          <span><i class="fas fa-map-marker-alt"></i> &#45;&#45;</span>-->
+<!--        </div>-->
+<!--        <a href="facilities/mirae" class="view-details-btn">상세보기 <i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--  </div>-->
+
+<!--  <div class="no-results-message" style="display: none;">-->
+<!--    <i class="fas fa-search"></i>-->
+<!--    <p>검색 결과가 없습니다.</p>-->
+<!--    <button class="reset-search-btn" style="display: none;">전체 시설 보기</button>-->
+<!--  </div>-->
+<!--  <footer class="facility-footer">-->
+<!--    <p>© 2025 연세대학교 | 시설 문의: 033-123-4567</p>-->
+<!--  </footer>-->
+
+<!--  <script src="common/navbar.js"></script>-->
+<!--  <script src="last/facility.js"></script>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,269 @@
+/* 페이지 헤더 */
+.page-header {
+  background-color: white;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: var(--primary-dark);
+  margin: 0 0 0.5rem;
+  font-size: 2.2rem;
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* 필터 */
+.facility-filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.filter-btn.active {
+  background-color: var(--secondary);
+  color: white;
+}
+
+/* 검색창 */
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+.search-box button {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+/* 시설 카드 컨테이너 */
+.facility-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* 시설 카드 */
+.facility-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.facility-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.facility-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.facility-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 51, 102, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.facility-info {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.facility-info h3 {
+  margin: 0 0 10px;
+  color: var(--primary-dark);
+  font-size: 1.3rem;
+}
+
+.facility-description {
+  color: var(--text-secondary);
+  margin: 0 0 15px;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.facility-details {
+  display: block;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.view-details-btn {
+  display: inline-block;
+  background-color: var(--secondary);
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.no-results-message {
+  text-align: center;
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #777;
+}
+
+.no-results-message i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.reset-search-btn {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* 푸터 */
+.facility-footer {
+  background-color: var(--primary-dark);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* 반응형 - 시설 페이지 특화 스타일만 유지 */
+@media (max-width: 1024px) {
+  .facility-container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 15px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .facility-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 15px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .facility-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .page-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .facility-details {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .facility-filters {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .facility-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .facility-container {
+    padding: 0 10px;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .facility-image {
+    height: 180px;
+  }
+
+  .facility-info {
+    padding: 15px;
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>노선-정류장 목록</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-7xl mx-auto space-y-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">노선-정류장 목록</h1>
+    <a href="/routeStops/new/new" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md">신규 등록</a>
+    <div class="bg-white rounded-xl shadow p-6">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">정류장 순서</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">예정 도착 시간</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">노선 이름</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">정류장 이름</th>
+                    <th scope="col" class="relative px-6 py-3"><span class="sr-only">Actions</span></th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                <tr th:each="routeStop : ${routeStops}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" th:text="${routeStop.id}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${routeStop.stopOrder}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${routeStop.arrivalTime}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${routeStop.route.name}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" th:text="${routeStop.stop.name}"></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-4">수정</a>
+                        <a href="#" class="text-red-600 hover:text-red-900">삭제</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

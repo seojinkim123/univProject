@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-7xl mx-auto space-y-10">
+
+    <div th:fragment="section(title, items, moreUrl, type)">
+        <div class="bg-white rounded-xl shadow p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold" th:text="${title}">섹션 제목</h2>
+                <a th:href="${moreUrl}" class="text-blue-600 hover:underline text-sm">더보기 →</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div th:each="item, iterStat : ${items}" th:if="${iterStat.index} < 4"
+                     class="border rounded-lg p-4 bg-gray-50 shadow-sm">
+
+                    <div th:if="${type == 'facility'}">
+                        <p class="font-semibold">ID: <span th:text="${item.id}">1</span></p>
+                        <p th:text="${item.name}">시설명</p>
+                        <p class="text-sm text-gray-500" th:text="${item.category}">시설 타입</p>
+                    </div>
+
+                    <div th:if="${type == 'stop'}">
+                        <p class="font-semibold" th:text="${item.name}">정류장 이름</p>
+                        <p class="text-sm text-gray-600">ID: <span th:text="${item.id}">1</span></p>
+                        <p class="text-sm text-gray-500" th:text="${item.explanation}">설명</p>
+                    </div>
+
+                    <div th:if="${type == 'route'}">
+                        <p class="font-semibold" th:text="${item.name}">노선명</p>
+                        <p class="text-sm text-gray-600">ID: <span th:text="${item.id}">1</span></p>
+                        <p class="text-sm text-gray-500" th:text="${item.busNumber}">버스 번호</p>
+                    </div>
+
+                    <div th:if="${type == 'routeStop'}">
+                        <p class="font-semibold">노선정류장</p>
+                        <p class="text-sm text-gray-600" th:text="'Route: ' + ${item.route.name}"></p>
+                        <p class="text-sm text-gray-600" th:text="'Stop: ' + ${item.stop.name}"></p>
+                        <p class="text-sm text-gray-500" th:text="'순서: ' + ${item.stopOrder}"></p>
+                    </div>
+
+                    <div th:if="${type == 'internal'}">
+                        <p class="font-semibold" th:text="${item.name}">Name</p>
+                        <p class="text-sm text-gray-600" th:text="${item.explanation}">Explanation</p>
+                    </div>
+
+                    <div th:if="${type == 'user'}">
+                        <p class="font-semibold" th:text="${item.name}">사용자</p>
+                        <p class="text-sm text-gray-600" th:text="'역할: ' + ${item.roles}"></p>
+                        <p class="text-sm text-gray-500" th:text="${item.email}">이메일</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{::section('시설 목록', ${facilities}, '/ad/facilities', 'facility')}"></div>
+    <div th:replace="~{::section('정류장 목록', ${stops}, '/ad/stops', 'stop')}"></div>
+    <div th:replace="~{::section('노선 목록', ${routes}, '/ad/routes', 'route')}"></div>
+    <div th:replace="~{::section('노선-정류장 목록', ${routeStops}, '/ad/routeStops', 'routeStop')}"></div>
+    <div th:replace="~{::section('사용자 목록', ${users}, '/ad/users', 'user')}"></div>
+</div>
+</body>
+</html>

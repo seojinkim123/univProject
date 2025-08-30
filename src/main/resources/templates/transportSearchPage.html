@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연세대학교 셔틀버스 | 교통 정보</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/common/basestyle.css">
+    <link rel="stylesheet" href="/last/transportation.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<main class="container">
+    <!-- 검색 정보 섹션 -->
+    <section class="search-info" th:if="${param.departure != null and param.arrival != null}">
+        <h2>검색 결과</h2>
+        <div class="search-params">
+            <div class="param-item">
+                <span class="label">출발지:</span>
+                <span class="value" th:text="${param.departure}">출발지</span>
+            </div>
+            <div class="param-item">
+                <span class="label">도착지:</span>
+                <span class="value" th:text="${param.arrival}">도착지</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 검색 결과가 없을 때 -->
+    <section class="no-results" th:if="${routes == null or #lists.isEmpty(routes)}">
+        <div class="info-card">
+            <div class="card-header">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                <span>검색 결과 없음</span>
+            </div>
+            <div class="no-results-content">
+                <p>해당 경로로 운행하는 버스가 없습니다.</p>
+                <p>다른 출발지와 도착지를 입력해보세요.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 검색 결과가 있을 때 -->
+    <section class="route-results" th:if="${routes != null and not #lists.isEmpty(routes)}">
+        <h2>이용 가능한 노선</h2>
+
+        <div class="route-list">
+            <div class="route-card" th:each="route : ${routes}">
+                <div class="route-header">
+                    <div class="route-name">
+                        <i class="fas fa-bus" aria-hidden="true"></i>
+                        <span th:text="${route.name}">노선명</span>
+                    </div>
+                    <div class="route-number" th:if="${route.busNumber != null}"
+                         th:text="'버스번호: ' + ${route.busNumber}">버스번호</div>
+                    <div class="route-number" th:if="${route.day != null}"
+                         th:text="'요일: ' + ${route.day}">요일</div>
+                </div>
+
+                <div class="route-details">
+                    <div class="route-info">
+                        <div class="info-item" th:if="${route.startTime != null}">
+                            <span class="label">시작시간:</span>
+                            <span class="value" th:text="${route.startTime}">시작시간</span>
+                        </div>
+
+                        <div class="info-item" th:if="${route.explanation != null}">
+                            <span class="label">설명:</span>
+                            <span class="value" th:text="${route.explanation}">설명</span>
+                        </div>
+                    </div>
+
+                    <!-- 정류장 목록 -->
+                    <div class="stops-info" th:if="${route.routeStops != null and not #lists.isEmpty(route.routeStops)}">
+                        <h4>경유 정류장</h4>
+                        <div class="stops-list">
+                            <span class="stop-item"
+                                  th:each="routeStop, iterStat : ${route.routeStops}"
+                                  th:text="${routeStop.stop.name + (iterStat.last ? '' : ' → ')}">
+                                정류장
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 정류장 상세 정보 (만약 단일 정류장 정보가 있다면) -->
+    <section class="stop-detail" th:if="${stop != null}">
+        <h2>정류장 정보</h2>
+        <div class="info-card">
+            <div class="card-header">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <span th:text="${stop.name}">정류장명</span>
+            </div>
+            <div class="stop-info">
+                <div class="info-item" th:if="${stop.location != null}">
+                    <span class="label">위치:</span>
+                    <span class="value" th:text="${stop.location}">위치정보</span>
+                </div>
+                <div class="info-item" th:if="${stop.explanation != null}">
+                    <span class="label">설명:</span>
+                    <span class="value" th:text="${stop.explanation}">설명</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="notice-section" aria-labelledby="notice-title">
+        <h2 id="notice-title" class="notice-title">
+            <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+            <span>주의사항</span>
+        </h2>
+        <div class="notice-content">
+            <p><i class="fas fa-circle-info" aria-hidden="true"></i> 요금 및 운행 시간은 변동될 수 있습니다. 수시로 시간 확인 바랍니다.</p>
+            <p><i class="fas fa-circle-info" aria-hidden="true"></i> 서울버스는 중간 정류장 시간이 유동적이오니 승차장에 미리 대기하여 주시기 바랍니다.</p>
+            <p><i class="fas fa-circle-info" aria-hidden="true"></i> 비수기에는 부득이한 사정으로 운행이 불가할 수 있습니다.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="app-footer">
+    <p>© 2025 연세대학교 </p>
+</footer>
+
+<script src="/last/transportation.js"></script>
+<script src="/common/navbar.js"></script>
+
+<style>
+    /* 추가 스타일 */
+    .search-info {
+        margin-bottom: 2rem;
+    }
+
+    .search-params {
+        display: flex;
+        gap: 2rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+
+    .param-item {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .param-item .label {
+        font-weight: 500;
+        color: #666;
+    }
+
+    .param-item .value {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .route-results {
+        margin-bottom: 2rem;
+    }
+
+    .route-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .route-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .route-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .route-name {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .route-name i {
+        color: #007bff;
+    }
+
+    .route-number {
+        background: #28a745;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 16px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .route-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .route-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .info-item {
+        display: flex;
+        gap: 0.5rem;
+        min-width: 150px;
+    }
+
+    .info-item .label {
+        color: #666;
+        font-weight: 500;
+    }
+
+    .info-item .value {
+        color: #333;
+        font-weight: 600;
+    }
+
+    .stops-info h4 {
+        margin: 0 0 0.5rem 0;
+        color: #333;
+        font-size: 1rem;
+    }
+
+    .stops-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .stop-item {
+        white-space: nowrap;
+    }
+
+    .no-results {
+        margin: 2rem 0;
+    }
+
+    .no-results-content {
+        padding: 2rem;
+        text-align: center;
+        color: #666;
+    }
+
+    .no-results-content p {
+        margin: 0.5rem 0;
+    }
+
+    .stop-detail {
+        margin-bottom: 2rem;
+    }
+
+    .stop-info {
+        padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .search-params {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .route-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .route-info {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+</style>
+
+</body>
+</html>

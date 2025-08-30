@@ -1,0 +1,568 @@
+/* ========== 슬라이더 스타일 ========== */
+.slider {
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    margin: 0 auto;
+    background: none;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slides img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-dark);
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.slider-button.prev {
+    left: 15px;
+}
+
+.slider-button.next {
+    right: 15px;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.dot.active {
+    background-color: white;
+    transform: scale(1.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== 로고 ========== */
+.logo {
+    display: block;
+    max-width: 140px;
+    width: 100%;
+    height: auto;
+    margin: 24px auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.logo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* ========== 섹션 헤더 공통 스타일 ========== */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-header i {
+    font-size: 20px;
+    color: var(--primary);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-header h2,
+.section-header h3 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ========== 링크 및 스케줄 영역 공통 ========== */
+.links-section,
+.schedule {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.links-section::before,
+.schedule::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+
+/* ========== 링크 스타일 ========== */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.link-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    gap: 8px;
+    min-height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.link-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+
+.link-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+    transition: transform 0.3s ease;
+}
+
+
+
+.link-item span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* ========== 일정표 스타일 ========== */
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: var(--radius);
+    user-select: none;
+}
+
+.schedule-header h3 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 16px;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+}
+
+.month-nav {
+    background: white;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    color: var(--primary-dark);
+    cursor: pointer;
+    padding: 12px;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.month-nav:hover {
+    background: var(--primary-light);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: var(--shadow);
+}
+
+.all-schedule {
+    font-size: 13px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    margin-left: 12px;
+    border-radius: var(--radius);
+    gap: 6px;
+    min-width: auto;
+    border: none;
+}
+
+.all-schedule:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    transform: translateY(-2px);
+}
+
+.schedule-list {
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.schedule-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.schedule-list::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.schedule-list::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 3px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--primary-light);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.schedule-item:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow);
+    border-left-color: var(--primary);
+}
+
+.schedule-item:last-child {
+    margin-bottom: 0;
+}
+
+.schedule-date {
+    width: 60px;
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.schedule-day {
+    width: 30px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.schedule-content {
+    flex: 1;
+    padding-left: 16px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.schedule-empty {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: var(--radius);
+    border: 2px dashed var(--border-color);
+}
+
+/* ========== 메인 컨텐츠 래퍼 ========== */
+.main-content {
+    padding: 20px;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: var(--background);
+    min-height: calc(100vh - 200px);
+}
+/* ========== 전체 일정 팝업 스타일 ========== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.modal.hidden {
+    display: none;
+}
+.modal-content {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+}
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--primary-dark);
+}
+.modal-content h4 {
+    margin: 16px 0 8px;
+    font-size: 16px;
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 16px;
+        gap: 24px;
+    }
+
+    .slider {
+        border-radius: var(--radius);
+    }
+
+    .slider-button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .slider-button.prev {
+        left: 12px;
+    }
+
+    .slider-button.next {
+        right: 12px;
+    }
+
+    .logo {
+        max-width: min(160px, 45vw);
+        margin: 20px auto;
+    }
+
+    .links-section,
+    .schedule {
+        padding: 24px 20px;
+    }
+
+    .section-header {
+        margin-bottom: 20px;
+    }
+
+    .section-header h2,
+    .section-header h3 {
+        font-size: 16px;
+    }
+
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .link-item {
+        padding: 16px 12px;
+        font-size: 12px;
+        min-height: 70px;
+    }
+
+    .link-item i {
+        font-size: 18px;
+    }
+
+    .schedule-header {
+        padding: 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .schedule-header h3 {
+        font-size: 15px;
+    }
+
+    .month-nav {
+        font-size: 14px;
+        padding: 10px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .all-schedule {
+        font-size: 12px;
+        padding: 8px 14px;
+        margin-left: 0;
+        order: 3;
+        flex-basis: 100%;
+        justify-content: center;
+    }
+
+    .schedule-item {
+        font-size: 13px;
+        padding: 14px;
+    }
+
+    .schedule-date {
+        width: 55px;
+        font-size: 13px;
+    }
+
+    .schedule-day {
+        width: 25px;
+    }
+
+    .schedule-content {
+        padding-left: 12px;
+        font-size: 13px;
+    }
+
+    .circle-container {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .login-button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .login-button i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 12px;
+    }
+
+    .slider {
+        border-radius: var(--radius-sm);
+    }
+
+    .links-section,
+    .schedule {
+        padding: 20px 16px;
+    }
+
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .link-item {
+        padding: 14px 10px;
+        font-size: 11px;
+        min-height: 65px;
+    }
+
+    .link-item i {
+        font-size: 16px;
+    }
+
+    .schedule-list {
+        max-height: 240px;
+    }
+
+    .login-button span {
+        display: none;
+    }
+
+    .login-button {
+        padding: 12px;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+    }
+}
