@@ -24,16 +24,16 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Grant execute permission for gradlew
+      - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       - name: Run tests
         run: ./gradlew test --no-daemon
 
-      - name: Build (for sanity before Docker)
+      - name: Build (before Docker)
         run: ./gradlew build -x test --no-daemon
 
-      - name: Upload JAR (optional artifact)
+      - name: Upload JAR (optional)
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
@@ -70,19 +70,18 @@ jobs:
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
 
   deploy:
-    name: Deploy to remote server via SSH
+    name: Deploy to remote server via SSH (password)
     needs: docker-build-push
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
 
     steps:
-      - name: Deploy over SSH
+      - name: Deploy over SSH (password)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script_stop: true
           envs: IMAGE_NAME
           script: |
@@ -94,30 +93,17 @@ jobs:
             NETWORK="hello-net"
             ENV_FILE="/opt/hello-james/.env"
 
-            # Login to Docker Hub (token recommended)
             echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-            # Create network if missing (optional)
             docker network inspect "$NETWORK" >/dev/null 2>&1 || docker network create "$NETWORK"
-
-            # Pull latest image
             docker pull "$IMAGE"
 
-            # Stop & remove old container if exists
             if [ "$(docker ps -aq -f name=^${CONTAINER}$)" ]; then
               docker rm -f "$CONTAINER" || true
             fi
 
-            # Ensure env directory exists
             mkdir -p /opt/hello-james
 
-            # Run new container
-            docker run -d --name "$CONTAINER" \
-              --restart unless-stopped \
-              --env-file "$ENV_FILE" \
-              -p ${HOST_PORT}:${CONTAINER_PORT} \
-              --network "$NETWORK" \
-              "$IMAGE"
+            docker run -d --name "$CONTAINER"               --restart unless-stopped               --env-file "$ENV_FILE"               -p ${HOST_PORT}:${CONTAINER_PORT}               --network "$NETWORK"               "$IMAGE"
 
-            # (Optional) prune old dangling images
             docker image prune -f
