@@ -87,10 +87,6 @@ jobs:
           script: |
             set -euxo pipefail
             export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"  # <- 이 줄 추가
-
-            mkdir -p ~/.docker
-            echo '{"credsStore":""}' > ~/.docker/config.json
-            
             IMAGE="${{ env.IMAGE_NAME }}:latest"
             CONTAINER="hello-james"
             HOST_PORT=80
