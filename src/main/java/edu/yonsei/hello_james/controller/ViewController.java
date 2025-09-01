@@ -31,7 +31,7 @@ public class ViewController {
     @GetMapping
     public String MainPage(Model model) {
 
-        return "MainPage";
+        return "mainPage";
     }
 
 
